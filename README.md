@@ -13,7 +13,7 @@ Each chapter of the book contains exercises related to the discussed content.
 - [Chapter 1: A Tutorial Introduction](chapter_1)
 - [Chapter 2: Types, Operators and Expressions](chapter_2)
 - [Chapter 3: Control Flow](chapter_3)
-- [Chapter 4: Function and Program Structure](chapter_4)
+- [Chapter 4: Functions and Program Structure](chapter_4)
 - [Chapter 5: Pointers and Arrays](chapter_5)
 - [Chapter 6: Structures](chapter_6)
 - [Chapter 7: Input and Output](chapter_7)
