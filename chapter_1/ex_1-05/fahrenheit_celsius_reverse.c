@@ -19,4 +19,6 @@ int main()
         celsius = (5.0 / 9.0) * (fahrenheit - 32.0);
         printf("%3.0f\t%10.1f\n", fahrenheit, celsius);
     }
+
+    return 0;
 }

@@ -7,6 +7,7 @@
 int main()
 {
     printf("The value of the expression 'getChar() != EOF' is: %d\n", getchar() != EOF);
+    return 0;
 }
 
 /**
