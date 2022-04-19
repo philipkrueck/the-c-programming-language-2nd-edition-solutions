@@ -1,16 +1,19 @@
-# Prerequisites
-*.d
+# Ignore all files without an extension
+*
+!*/
+!*.*
+
+# Don't ignore Makefile
+!Makefile
+
+# Unknoun files
+*.ipch
 
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
 
 # Precompiled Headers
 *.gch
@@ -21,6 +24,7 @@
 *.a
 *.la
 *.lo
+*.bin
 
 # Shared objects (inc. Windows DLLs)
 *.dll
@@ -38,15 +42,3 @@
 
 # Debug files
 *.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
