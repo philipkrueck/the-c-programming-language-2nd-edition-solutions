@@ -20,3 +20,13 @@ int main()
 
     return 0;
 }
+
+/**
+ * The most likely inputs to uncover bugs in the program are boundary conditions:
+ * - no character input
+ * - a single blank
+ * - a single tab
+ * - a single newline
+ * - newline followed by a blanks or tabs followed by a word
+ *
+ */
