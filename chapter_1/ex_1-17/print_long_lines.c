@@ -8,7 +8,6 @@
 #define LONG_LINE_LENGTH 80     /* long line length */
 
 int getLine(char line[], int maxLength);
-void copy(char to[], char from[]);
 
 /* print the longest input line */
 int main()
@@ -44,11 +43,4 @@ int getLine(char line[], int maxLength)
     }
     line[lineLength] = '\0';
     return lineLength;
-}
-
-void copy(char to[], char from[])
-{
-    int i = 0;
-    while ((to[i] = from[i]) != '\0')
-        i++;
 }
