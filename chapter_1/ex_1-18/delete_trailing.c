@@ -8,21 +8,20 @@
 #define MAX_CHARS_PER_LINE 1000 /* maximum input line length */
 
 int getLine(char line[], int maxLength);
-int trim(char trimmed[], char base[]);
+int trim(char base[]);
 
 /* print the longest input line */
 int main()
 {
-    int currLength = 0;                   /* current line length */
-    char currLine[MAX_CHARS_PER_LINE];    /* current input line */
-    char trimmedLine[MAX_CHARS_PER_LINE]; /* current input line */
+    int currLength = 0;                /* current line length */
+    char currLine[MAX_CHARS_PER_LINE]; /* current input line */
 
     while ((currLength = getLine(currLine, MAX_CHARS_PER_LINE)) > 0)
     {
 
-        if (trim(trimmedLine, currLine) > 0)
+        if (trim(currLine) > 0)
         {
-            printf("trimmed line:\t\"%s\"\n", trimmedLine);
+            printf("trimmed line:\t\"%s\"\n", currLine);
         }
     }
 
@@ -42,29 +41,21 @@ int getLine(char line[], int maxLength)
         ++lineLength;
     }
 
+    /* reset the rest of the current line back to 0 */
     for (lineLength = lineLength; lineLength < maxLength - 1; ++lineLength)
         line[lineLength] = '\0';
 
     return lineLength;
 }
 
-int trim(char trimmed[], char base[])
+int trim(char base[])
 {
-    for (int i = 0; i < MAX_CHARS_PER_LINE; i++)
-    {
-        trimmed[i] = 0;
-    }
-
     int lastSpace = MAX_CHARS_PER_LINE - 1;
 
     while (base[lastSpace] == '\0' || base[lastSpace] == '\n' || base[lastSpace] == '\t' || base[lastSpace] == ' ')
     {
+        base[lastSpace] = 0;
         lastSpace--;
-    }
-
-    for (int i = 0; i <= lastSpace; i++)
-    {
-        trimmed[i] = base[i];
     }
 
     return lastSpace + 1;
