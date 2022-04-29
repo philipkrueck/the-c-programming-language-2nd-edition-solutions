@@ -9,7 +9,8 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
+            "console": "integratedTerminal",
             "linux": {
                 "MIMode": "gdb"
             },
