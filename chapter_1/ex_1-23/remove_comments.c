@@ -52,5 +52,5 @@ int isQuotationMark(char character)
 }
 
 /*
- * NOTE: this program only considers comments with this commment form
+ * NOTE: this program only considers comments with this commment form.
  */
