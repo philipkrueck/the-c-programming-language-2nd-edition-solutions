@@ -2,6 +2,9 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "files.associations": {
         "istream": "c",
-        "string": "c"
+        "string": "c",
+        "stdio.h": "c",
+        "limits.h": "c",
+        "float.h": "c"
     }
 }
