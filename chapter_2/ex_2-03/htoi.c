@@ -23,6 +23,8 @@ int main()
     getLine(hexString, MAX_CHARS_PER_LINE);
 
     printf("the decimal representation of the hex string \"%s\" is %d\n", hexString, htoi(hexString));
+
+    return 0;
 }
 
 int getLine(char line[], int maxLength)
@@ -73,7 +75,3 @@ int htoi(char s[])
 
     return result;
 }
-
-/*
- * NOTE:
- */

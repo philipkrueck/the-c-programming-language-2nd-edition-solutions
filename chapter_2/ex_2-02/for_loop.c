@@ -41,6 +41,8 @@ int main()
 
     s[i] = '\0';
     printf("string: %s\n", s);
+
+    return 0
 }
 
 /*
