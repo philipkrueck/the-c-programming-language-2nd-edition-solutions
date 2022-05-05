@@ -1,7 +1,6 @@
 /**
- * Exercise 2-7
- * Write a function invert(x,p,n) that returns x with the n bits that begin at position p inverted (i.e., 1 changed into 0 and vice versa),
- * leaving the others unchanged.
+ * Exercise 2-8
+ * Write a function rightrot(x,n) that returns the value of the integer x rotated to the right by n positions.
  */
 #include <stdio.h>
 
@@ -18,20 +17,20 @@
         (byte & 1 ? '1' : '0')
 
 /* functions */
-unsigned int invert(int x, int p, int n);
+unsigned int rightrot(int x, int n);
 
 int main()
 {
     unsigned int x = 0b10100100;
-    unsigned int z = invert(x, 5, 4);
+    unsigned int z = rightrot(x, 3);
 
-    printf("updated bits: " BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(z)); // 1001 1000
+    printf("updated bits: " BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(z));
 
     return 0;
 }
 
-unsigned int invert(int x, int p, int n)
+unsigned int rightrot(int x, int n)
 {
-    unsigned int maskOne = (~(~0 << (p + 1 - n)) | (~0 << (p + 1)));
-    return (maskOne & x) | (~(~maskOne & x) & ~maskOne);
+    unsigned int maskOne = ~x;
+    return maskOne;
 }

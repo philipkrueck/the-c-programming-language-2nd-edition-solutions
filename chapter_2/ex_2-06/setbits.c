@@ -27,7 +27,6 @@ int main()
     unsigned int z = setBits(x, 5, 4, y);
 
     printf("updated bits: " BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(z));
-    printf("\n");
 
     return 0;
 }
