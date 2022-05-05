@@ -17,20 +17,29 @@
         (byte & 1 ? '1' : '0')
 
 /* functions */
-unsigned int rightrot(int x, int n);
+unsigned rightrot(unsigned x, unsigned n);
 
-int main()
+int main(void)
 {
-    unsigned int x = 0b10100100;
-    unsigned int z = rightrot(x, 3);
-
-    printf("updated bits: " BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(z));
-
+    printf("updated bits: " BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(rightrot(5, 3))); /* 10100000 */
     return 0;
 }
 
-unsigned int rightrot(int x, int n)
+unsigned rightrot(unsigned x, unsigned n)
 {
-    unsigned int maskOne = ~x;
-    return maskOne;
+    while (n > 0)
+    {
+        if (x & 1)                     /* rightmost bit of x is 1 */
+            x = (x >> 1) | 0b10000000; /* we assume an 8-bit integer */
+        else                           /* rightmost bit of x is 0 */
+            x = x >> 1;
+        --n;
+    }
+    return x;
 }
+
+/*
+ * NOTE: The implemenation has been done for 8-bit integers as this is easy to print out.
+ * Conceptually the implementation would work for any size integers with a minor adjustment
+ * to line 33.
+ */
