@@ -26,7 +26,7 @@ void convertAndPrint(int n, int base)
 {
     char convertedString[100];
     itob(n, convertedString, base);
-    printf("%d converts to string \"%s\"in base %d\n", n, convertedString, base);
+    printf("%d converts to string \"%s\" in base %d\n", n, convertedString, base);
 }
 
 /* itob:  convert n to characters in s given a base up to 16*/
