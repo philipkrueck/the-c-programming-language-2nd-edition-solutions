@@ -8,8 +8,6 @@
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_CHARS_PER_LINE 100
-
 /* functions */
 void expandAndPrint(char shorthand[]);
 void expand(char shorthand[], char expanded[]);
@@ -29,7 +27,7 @@ int main(void)
 
 void expandAndPrint(char shorthand[])
 {
-    char expandedString[MAX_CHARS_PER_LINE];
+    char expandedString[100];
     expand(shorthand, expandedString);
     printf("shorthand notation \"%s\" expands to \"%s\"\n", shorthand, expandedString);
 }
