@@ -5,6 +5,7 @@
         "string": "c",
         "stdio.h": "c",
         "limits.h": "c",
-        "float.h": "c"
+        "float.h": "c",
+        "math.h": "c"
     }
 }
