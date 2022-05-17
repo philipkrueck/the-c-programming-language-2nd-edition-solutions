@@ -16,13 +16,13 @@
 void push(double);
 double pop();
 int getNextOp(char[]);
-int getchar();
-void ungetchar(int c);
+int getch(void);
+void ungetch(int c);
 
 /* external variables */
 int stackPointer = 0;
 double stack[MAX_STACK_DEPTH];
-char buf[BUFSIZE];   /* buffer for ungetchar */
+char buf[BUFSIZE];   /* buffer for ungetch */
 int bufPosition = 0; /* next free position in buf */
 
 /* reverse Polish calculator */
@@ -64,7 +64,7 @@ int main()
                 push(fmod(pop(), op2));
             break;
         case '\n':
-            printf("\t%.8g\n", pop());
+            printf("result: %.8g\n", pop());
             break;
         default:
             printf("error: unknown command %s\n", s);
@@ -101,7 +101,7 @@ int getNextOp(char s[])
 {
     int i, c;
 
-    while ((s[0] = c = getchar()) == ' ' || c == '\t')
+    while ((s[0] = c = getch()) == ' ' || c == '\t')
         ;
 
     s[1] = '\0';
@@ -111,28 +111,29 @@ int getNextOp(char s[])
     i = 0;
 
     if (isdigit(c))
-        while (isdigit(s[++i] = c = getchar()))
+        while (isdigit(s[++i] = c = getch()))
             ;
 
     if (c == '.')
-        while (isdigit(s[++i] = c = getchar()))
+        while (isdigit(s[++i] = c = getch()))
             ;
 
     s[i] = '\0';
 
     if (c != EOF)
-        ungetchar(c);
+        ungetch(c);
     return OPERAND;
 }
 
-int getchar(void) /* get a (possibly pushed-back) character */
+int getch(void) /* get a (possibly pushed-back) character */
 {
     return (bufPosition > 0) ? buf[--bufPosition] : getchar();
 }
-void ungetchar(int c) /* push character back on input */
+
+void ungetch(int c) /* push character back on input */
 {
     if (bufPosition >= BUFSIZE)
-        printf("ungetchar: too many characters\n");
+        printf("ungetch: too many characters\n");
     else
         buf[bufPosition++] = c;
 }
