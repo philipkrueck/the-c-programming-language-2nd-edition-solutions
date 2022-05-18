@@ -1,7 +1,7 @@
 /**
- * Exercise 4-3
- * Given the basic framework, it's straightforward to extend the calculator.
- * Add the modulus (%) operator and provisions for negative numbers.
+ * Exercise 4-6
+ * Add commands for handling variables. (It's easy to provide twenty-six variables
+ * with single-letter names.) Add a variable for the most recently printed value.
  */
 #include <stdio.h>
 #include <ctype.h>
