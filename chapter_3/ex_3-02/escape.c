@@ -8,7 +8,7 @@
 #define MAX_CHARS_PER_LINE 1000 /* maximum input line length */
 
 /* functions */
-int getLine(char line[], int maxLength);
+int getline(char line[], int maxLength);
 void escape(char original[], char escaped[]);
 void unescape(char escaped[], char unescaped[]);
 
@@ -18,7 +18,7 @@ int main(void)
     char escapedString[MAX_CHARS_PER_LINE];
     char unescapedString[MAX_CHARS_PER_LINE];
 
-    getLine(originalString, MAX_CHARS_PER_LINE);
+    getline(originalString, MAX_CHARS_PER_LINE);
     printf("original string: %s", originalString);
 
     escape(originalString, escapedString);
@@ -28,7 +28,7 @@ int main(void)
     printf("unescaped string: %s\n", unescapedString);
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;

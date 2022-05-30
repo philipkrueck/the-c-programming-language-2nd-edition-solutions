@@ -15,10 +15,10 @@ int main()
 {
     double sum, atof(char s[]);
     char line[MAXLINE];
-    int getLine(char line[], int max);
+    int getline(char line[], int max);
 
     sum = 0;
-    while (getLine(line, MAXLINE) > 0)
+    while (getline(line, MAXLINE) > 0)
         printf("\t%g\n", sum += atof(line));
 
     return 0;
@@ -60,7 +60,7 @@ double atof(char s[])
     return (sign * val / power) * pow(10, expSign * expPower);
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;

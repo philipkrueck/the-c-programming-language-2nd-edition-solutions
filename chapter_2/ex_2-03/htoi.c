@@ -12,7 +12,7 @@
 
 /* functions */
 int htoi(char s[]);
-int getLine(char line[], int maxLength);
+int getline(char line[], int maxLength);
 
 #include <stdio.h>
 
@@ -20,14 +20,14 @@ int main()
 {
     char hexString[MAX_CHARS_PER_LINE];
 
-    getLine(hexString, MAX_CHARS_PER_LINE);
+    getline(hexString, MAX_CHARS_PER_LINE);
 
     printf("the decimal representation of the hex string \"%s\" is %d\n", hexString, htoi(hexString));
 
     return 0;
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;

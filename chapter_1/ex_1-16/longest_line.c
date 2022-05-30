@@ -8,7 +8,7 @@
 
 #define MAX_CHARS_PER_LINE 1000 /* maximum input line length */
 
-int getLine(char line[], int maxLength);
+int getline(char line[], int maxLength);
 void copy(char to[], char from[]);
 
 /* print the longest input line */
@@ -22,7 +22,7 @@ int main()
     char tempLine[MAX_CHARS_PER_LINE]; /* start of line if we have an overflow */
     char maxLine[MAX_CHARS_PER_LINE];  /* longest line saved here */
 
-    while ((currLength = getLine(currLine, MAX_CHARS_PER_LINE)) > 0)
+    while ((currLength = getline(currLine, MAX_CHARS_PER_LINE)) > 0)
     {
         if (currLine[currLength - 1] != '\n') /* check if we have an overflow */
         {
@@ -66,7 +66,7 @@ int main()
     return 0;
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;

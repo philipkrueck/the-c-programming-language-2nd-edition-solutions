@@ -20,7 +20,7 @@ int getNextOp(char[]);
 int getch(void);
 void ungetch(int c);
 int isValidVariableName(char variableName);
-int getLine(char line[], int max);
+int getline(char line[], int max);
 
 /* external variables */
 int stackPointer = 0;
@@ -37,7 +37,7 @@ int main()
     double op2;
     char s[MAX_STACK_DEPTH];
 
-    while (getLine(line, MAX_LINE_LENGTH) > 0)
+    while (getline(line, MAX_LINE_LENGTH) > 0)
     {
         currLinePos = 0;
         while ((type = getNextOp(s)) != '\0')
@@ -126,7 +126,7 @@ int getNextOp(char s[])
     return OPERAND;
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;

@@ -10,7 +10,7 @@
 #define MAX_INPUT_LINE_LENGTH 1000 /* maximum input line length */
 #define MAX_LINE_LENGTH 6          /* maximum output line length*/
 
-int getLine(char line[], int maxLength);
+int getline(char line[], int maxLength);
 void foldLine(char line[], char outputLine[], int maxLineLength);
 
 int main()
@@ -19,7 +19,7 @@ int main()
     char currLine[MAX_INPUT_LINE_LENGTH];   /* current input line */
     char foldedLine[MAX_INPUT_LINE_LENGTH]; /* current input line */
 
-    while ((currLength = getLine(currLine, MAX_INPUT_LINE_LENGTH)) > 0)
+    while ((currLength = getline(currLine, MAX_INPUT_LINE_LENGTH)) > 0)
     {
         if (currLength <= MAX_LINE_LENGTH)
         {
@@ -37,7 +37,7 @@ int main()
     }
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;

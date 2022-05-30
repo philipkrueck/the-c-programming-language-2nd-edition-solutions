@@ -7,7 +7,7 @@
 
 #define MAX_CHARS_PER_LINE 1000 /* maximum input line length */
 
-int getLine(char line[], int maxLength);
+int getline(char line[], int maxLength);
 int trim(char base[]);
 
 /* print the longest input line */
@@ -16,7 +16,7 @@ int main()
     int currLength = 0;                /* current line length */
     char currLine[MAX_CHARS_PER_LINE]; /* current input line */
 
-    while ((currLength = getLine(currLine, MAX_CHARS_PER_LINE)) > 0)
+    while ((currLength = getline(currLine, MAX_CHARS_PER_LINE)) > 0)
     {
 
         if (trim(currLine) > 0)
@@ -28,7 +28,7 @@ int main()
     return 0;
 }
 
-int getLine(char line[], int maxLength)
+int getline(char line[], int maxLength)
 {
     char currChar;
     int lineLength;
