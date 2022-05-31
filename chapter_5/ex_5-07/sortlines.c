@@ -1,10 +1,13 @@
 /**
- *
- * Exercise 5-06
- * Rewrite appropriate programs from earlier chapters and exercises with pointers instead of array indexing.
- * Good possibilities include getline (Chapters 1 and 4), atoi, itoa, and  their  variants  (Chapters  2, 3,  and  4),
- * reverse (Chapter  3),  and  strindex  and  getop(Chapter 4).
+ * Exercise 5-07
+ * Rewrite readlines to store lines in an array supplied by main,
+ * rather than calling alloc to maintain storage. How much faster is the program?
  * */
+
+/**
+ * this version of readline should be faster because,
+ * `alloc` doesn't need to be called at every loop iteration.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
