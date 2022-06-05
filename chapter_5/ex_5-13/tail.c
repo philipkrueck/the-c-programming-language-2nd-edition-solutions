@@ -1,9 +1,16 @@
 /**
- * Exercise: 5-12
- * Extend entab and detab to accept the shorthand
- *      entab -m +n
- * to mean tab stops every n columns, starting at column m.
- * Choose convenient (for the user) default behavior.
+ * Exercise: 5-13
+ * Write the program tail, which prints the last n lines of its input.
+ * By default, n is set to 10, let us say, but it can be changed by an optional argument so that
+ *
+ *      tail -nprints
+ *
+ * the last n lines.
+ *
+ * The program should behave rationally no matter how unreasonable the input or the value of n.
+ * Write the program so it makes the best use of available storage;
+ * lines should  be  stored  as  in  the  sorting  program  of  Section  5.6,
+ * not  in  a  two-dimensional  array  of  fixed size.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,24 +20,25 @@
 
 /* functions */
 int getLine(char *line, int limit);
-void entab(char *inputLine, char *outputLine, int *m, int *n);
-int extractArguments(int argc, char *argv[], int *m, int *n);
+int extractN(int argc, char *argv[], int *n);
 
 int main(int argc, char *argv[])
 {
     char inputLine[MAX_INPUT_LINE_LENGTH];
     char outputLine[MAX_INPUT_LINE_LENGTH];
-    int m = 1; /* default starting position */
-    int n = 4; /* default tab stop every n columns */
+    int m = 1; /* number of lines */
 
-    if (!extractArguments(argc, argv, &m, &n))
+    if (!extractN(argc, argv, &n))
         printf("invalid argument list; usage: %s [-m pos] [+n col]\n", *argv);
     else
+    {
+        printf("m: %d, n: %d", m, n);
         while (getLine(inputLine, MAX_INPUT_LINE_LENGTH) > 0)
         {
             entab(inputLine, outputLine, &m, &n);
             printf("%s", outputLine);
         }
+    }
 
     return 0;
 }
@@ -38,8 +46,14 @@ int main(int argc, char *argv[])
 /* extract starting position and tab stop increase from command line argument list into m and n
  * return 0 if argument list is invalid, 1 if valid
  */
-int extractArguments(int argc, char *argv[], int *m, int *n)
+int extractN(int argc, char *argv[], int *n)
 {
+    if (strcmp(*argv, "+n") == 0)
+    {
+        if ((*n = atoi(*++argv)) < 1)
+            return 0;
+    }
+
     for (; argc > 1; argc--)
     {
         if (strcmp(*++argv, "-m") == 0)
@@ -112,11 +126,3 @@ void entab(char *inputLine, char *outputLine, int *m, int *n)
 
     outputLine[j] = '\0';
 }
-
-/**
- * In Unix Systems you can use input and output redirection:
- * The commands that normally take their input from standard input, will use the input file and
- * instead of writing to standard output, the commands will write to the output file.
- *
- * > ./entab -m 1 +n 4 < input.txt > output.txt
- */

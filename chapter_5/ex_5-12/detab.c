@@ -26,14 +26,11 @@ int main(int argc, char *argv[])
     if (!extractArguments(argc, argv, &m, &n))
         printf("invalid argument list; usage: %s [-m pos] [+n col]\n", *argv);
     else
-    {
-        printf("m: %d, n: %d", m, n);
         while (getLine(inputLine, MAX_INPUT_LINE_LENGTH) > 0)
         {
             detab(inputLine, outputLine, &m, &n);
             printf("%s", outputLine);
         }
-    }
 
     return 0;
 }
