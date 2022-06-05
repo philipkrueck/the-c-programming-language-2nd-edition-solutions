@@ -16,28 +16,37 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAXLINES 5000              /* maximum number of lines to be read */
 #define MAX_INPUT_LINE_LENGTH 1000 /* max length of any input line */
+#define MAX_SIZE 10000             /* max size of all read lines combined */
 
 /* functions */
 int getLine(char *line, int limit);
 int extractN(int argc, char *argv[], int *n);
+int readlines(char *lines[], int maxNumLines, char *text);
+int writeLastNLines(char *lines[], int maxNumLines, int n);
 
 int main(int argc, char *argv[])
 {
-    char inputLine[MAX_INPUT_LINE_LENGTH];
-    char outputLine[MAX_INPUT_LINE_LENGTH];
-    int m = 1; /* number of lines */
+    char *lines[MAXLINES]; /* pointers to lines */
+    int n = 10;            /* number of lines */
+    int numLinesRead;
+    char text[MAX_SIZE];
 
     if (!extractN(argc, argv, &n))
+    {
         printf("invalid argument list; usage: %s [-m pos] [+n col]\n", *argv);
+        return -1;
+    }
+    else if ((numLinesRead = readlines(lines, MAXLINES, text)) >= 0)
+    {
+        printf("\nlast %d lines: \n", n);
+        writeLastNLines(lines, numLinesRead, n);
+    }
     else
     {
-        printf("m: %d, n: %d", m, n);
-        while (getLine(inputLine, MAX_INPUT_LINE_LENGTH) > 0)
-        {
-            entab(inputLine, outputLine, &m, &n);
-            printf("%s", outputLine);
-        }
+        printf("error: input too big to sort.\n");
+        return 1;
     }
 
     return 0;
@@ -48,30 +57,50 @@ int main(int argc, char *argv[])
  */
 int extractN(int argc, char *argv[], int *n)
 {
-    if (strcmp(*argv, "+n") == 0)
+    if (strcmp(*++argv, "-n") == 0)
     {
         if ((*n = atoi(*++argv)) < 1)
             return 0;
+        *n = abs(*n); /* handle negative input */
     }
 
-    for (; argc > 1; argc--)
-    {
-        if (strcmp(*++argv, "-m") == 0)
-        {
-            if ((*m = atoi(*++argv)) < 1)
-                return 0;
-            argc--;
-        }
-        else if (strcmp(*argv, "+n") == 0)
-        {
-            if ((*n = atoi(*++argv)) < 1)
-                return 0;
-            argc--;
-        }
-        else
-            return 0;
-    }
     return 1;
+}
+
+int readlines(char *lines[], int maxNumLines, char *text)
+{
+    int currLineLength, linesReadSoFar;
+    char *currLinePointer, currLine[MAX_INPUT_LINE_LENGTH];
+
+    currLinePointer = text;
+    linesReadSoFar = 0;
+    while ((currLineLength = getLine(currLine, MAX_INPUT_LINE_LENGTH)) > 0)
+        if (linesReadSoFar >= maxNumLines || currLinePointer >= text + MAX_SIZE)
+            return -1;
+        else
+        {
+            currLine[currLineLength - 1] = '\0';
+            strcpy(currLinePointer, currLine);
+            lines[linesReadSoFar++] = currLinePointer;
+            currLinePointer += currLineLength;
+        }
+
+    return linesReadSoFar;
+}
+
+int writeLastNLines(char *lines[], int numLines, int n)
+{
+    if (numLines > n)
+    {
+        int diff = numLines - n;
+        while (diff-- > 0)
+            lines++;
+    }
+    else
+        n = numLines;
+
+    while (n-- > 0)
+        printf("%s\n", *lines++);
 }
 
 /* getLine: read a line into s, return length */
@@ -91,38 +120,4 @@ int getLine(char *line, int limit)
     *(line + i) = '\0';
 
     return i;
-}
-
-void entab(char *inputLine, char *outputLine, int *m, int *n)
-{
-    int i;          /* index of inputLine */
-    int j;          /* index of outputLine */
-    int tabStopPos; /* next tab stop position */
-    int numBlanks, numTabs;
-
-    for (i = j = 0; inputLine[i] != '\0'; i++)
-        if (inputLine[i] == ' ' && (i + 1) >= *m)
-        {
-            for (numBlanks = numTabs = 0; inputLine[i] == ' '; i++)
-            {
-                if ((i + 1) % *n == 0)
-                {
-                    numTabs++;
-                    numBlanks = 0;
-                }
-                else
-                {
-                    numBlanks++;
-                }
-            };
-            i--; /* move back one after last loop iteration */
-            while (numTabs-- > 0)
-                outputLine[j++] = '\t';
-            while (numBlanks-- > 0)
-                outputLine[j++] = ' ';
-        }
-        else
-            outputLine[j++] = inputLine[i];
-
-    outputLine[j] = '\0';
 }
