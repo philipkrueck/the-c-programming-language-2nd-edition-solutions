@@ -10,8 +10,6 @@
 #include <string.h>
 
 #define MAX_INPUT_LINE_LENGTH 1000 /* max length of any input line */
-#define MAX_TABS 100               /* max number of tab stops per line */
-#define DEFAULT_COLS 4             /* if no arguments are provided, tab stop positions are every DEFAULT_COLS */
 
 /* functions */
 int getLine(char *line, int limit);
