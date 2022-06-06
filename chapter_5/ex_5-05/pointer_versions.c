@@ -46,6 +46,7 @@ void strcatn(char *s, char *t, int n)
         ;
     *s = '\0';
 }
+
 int strcmpn(char *s, char *t, int n)
 {
     int i = 0;

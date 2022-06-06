@@ -6,6 +6,8 @@
         "stdio.h": "c",
         "limits.h": "c",
         "float.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c"
     }
 }
