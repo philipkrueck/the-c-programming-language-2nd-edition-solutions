@@ -23,6 +23,10 @@ Each chapter of the book contains exercises related to the discussed content.
 
 The provided solutions are independent of any IDE. You can run the solutions individually using a C compiler of your choice.
 
+###### Running and Debugging in VS Code
+
+If you are using VS Code, you can use the [tasks.json](.vscode/tasks.json) and [launch.json](.vscode/launch.json) to easily compile and execute each file. I also recommend using the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) extension by Microsoft for IntelliSense, debugging and code browsing. To show the debug button in VS Code for each C file, you can enable the _C_Cpp: Debug Shortcut_ under _Settings_ > _Extensions_ > _C/C++_.
+
 ### Running Tests
 
 For some of the exercises, you will be able to run tests with [Ceedling](http://www.throwtheswitch.org/ceedling). The tests are provided in the `tests` directory.
@@ -32,10 +36,6 @@ Once you have Ceedling installed, you can run them using the `ceedling` command.
 ceedling test:all  # run all the tests
 ceedling test:name # test specific test suite with `name`
 ```
-
-###### Running and Debugging in VS Code
-
-If you are using VS Code, you can use the [tasks.json](.vscode/tasks.json) and [launch.json](.vscode/launch.json) to easily compile and execute each file. I also recommend using the [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) extension by Microsoft for IntelliSense, debugging and code browsing. To show the debug button in VS Code for each C file, you can enable the _C_Cpp: Debug Shortcut_ under _Settings_ > _Extensions_ > _C/C++_.
 
 ### Feedback
 
