@@ -10,18 +10,28 @@ Each chapter of the book contains exercises related to the discussed content.
 
 ### Chapters of the Book
 
-- [Chapter 1: A Tutorial Introduction](chapter_1)
-- [Chapter 2: Types, Operators and Expressions](chapter_2)
-- [Chapter 3: Control Flow](chapter_3)
-- [Chapter 4: Functions and Program Structure](chapter_4)
-- [Chapter 5: Pointers and Arrays](chapter_5)
-- [Chapter 6: Structures](chapter_6)
-- [Chapter 7: Input and Output](chapter_7)
-- [Chapter 8: The UNIX System Interface](chapter_8)
+- [Chapter 1: A Tutorial Introduction](src/chapter_1)
+- [Chapter 2: Types, Operators and Expressions](src/chapter_2)
+- [Chapter 3: Control Flow](src/chapter_3)
+- [Chapter 4: Functions and Program Structure](src/chapter_4)
+- [Chapter 5: Pointers and Arrays](src/chapter_5)
+- [Chapter 6: Structures](src/chapter_6)
+- [Chapter 7: Input and Output](src/chapter_7)
+- [Chapter 8: The UNIX System Interface](src/chapter_8)
 
 ### Running the Solutions
 
 The provided solutions are independent of any IDE. You can run the solutions individually using a C compiler of your choice.
+
+### Running Tests
+
+For some of the exercises, you will be able to run tests with [Ceedling](http://www.throwtheswitch.org/ceedling). The tests are provided in the `tests` directory.
+Once you have Ceedling installed, you can run them using the `ceedling` command.
+
+```bash
+ceedling test:all  # run all the tests
+ceedling test:name # test specific test suite with `name`
+```
 
 ###### Running and Debugging in VS Code
 
