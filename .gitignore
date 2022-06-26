@@ -44,4 +44,4 @@ git rm -r --cached # Ignore all files without an extension
 *.dSYM/
 
 # Build output
-build
+build/**
