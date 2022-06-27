@@ -8,6 +8,8 @@
         "float.h": "c",
         "math.h": "c",
         "stdlib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "__locale": "c",
+        "cstring": "c"
     }
 }

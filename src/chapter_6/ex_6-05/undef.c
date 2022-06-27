@@ -31,8 +31,8 @@ struct table_entry *install(char *name, char *def)
         return entry;
 
     entry = (struct table_entry *)malloc(sizeof(struct table_entry));
-    entry->name = name;
-    entry->definition = def;
+    entry->name = strdup(name);
+    entry->definition = strdup(def);
     entry->next = hash_table[hash_value];
     hash_table[hash_value] = entry;
     return entry;
