@@ -1,7 +1,6 @@
 /**
- * Exercise 8-2
- * Rewrite _fopen and _fillbuf with fields instead of explicit bit operations.
- * Compare code size and execution speed.
+ * Exercise 8-3
+ * Design and write _flushbuf, fflush, and fclose.
  */
 
 #include <fcntl.h>
@@ -20,6 +19,8 @@ FILE _iob[OPEN_MAX] = {/* stdin, stdout, stderr */
 /* function definitions */
 int _fillbuf(FILE *);
 int _flushbuf(int x, FILE *fp);
+int _fflush(FILE *fp);
+int _fclose(FILE *fp);
 
 FILE *_fopen(char *name, char *mode)
 {
@@ -96,18 +97,18 @@ int _flushbuf(int x, FILE *fp)
     if (fp->flag._WRITE == 0) /* must be able to write */
         return EOF;
 
-    bufsize = (fp->flag._UNBUF == 1) ? BUFSIZ : 1;
+    bufsize = (fp->flag._UNBUF == 1) ? BUFSIZ : 1; /* check if we are even using a buffer */
 
-    if (fp->base == NULL)
+    if (fp->base == NULL) /* base should be NULL when flushing */
     {
-        if ((fp->base = (char *)malloc(bufsize)) == NULL)
+        if ((fp->base = (char *)malloc(bufsize)) == NULL) /* allocate a new buffer */
         {
             return EOF;
         }
-        *fp->base = '\0';
+        *fp->base = '\0'; /* set base pointer to NULL character*/
     }
 
-    fp->ptr = fp->base;
+    fp->ptr = fp->base; /* set current position to start of buffer */
 
     if (bufsize == 1)
     {
@@ -135,6 +136,44 @@ int _flushbuf(int x, FILE *fp)
     return (unsigned char)*fp->ptr++;
 }
 
+/* close everything within the file data structure */
+int _fclose(FILE *fp)
+{
+    if (fp->flag._WRITE == 1)
+        _fflush(fp);
+    if (fp->base != NULL)
+        free(fp->base);
+    fp->base = NULL;
+    fp->ptr = NULL;
+    fp->cnt = 0;
+    fp->flag._EOF = 0;
+    fp->flag._ERR = 0;
+    fp->flag._READ = 0;
+    fp->flag._WRITE = 0;
+    return close(fp->fd);
+}
+
+/* flush buffer for FILE *fp when in writing mode */
+int _fflush(FILE *fp)
+{
+    if (fp->flag._WRITE == 0) /* must be able to write */
+    {
+        fp->flag._ERR = 1;
+        return EOF;
+    }
+
+    if (_flushbuf(EOF, fp) == EOF)
+    {
+        fp->flag._ERR = 1;
+        return EOF;
+    }
+
+    fp->ptr = fp->base;                          /* set current position to start of buffer */
+    fp->cnt = fp->flag._UNBUF == 1 ? 1 : BUFSIZ; /* reset count to buffer size */
+
+    return 0;
+}
+
 int main(int argc, char *argv[])
 {
     int c;
@@ -152,6 +191,7 @@ int main(int argc, char *argv[])
                 putchar(c);
         }
     }
+    _fclose(stdout);
 
     return 0;
 }
