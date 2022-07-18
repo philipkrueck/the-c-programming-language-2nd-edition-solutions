@@ -30,7 +30,6 @@ extern FILE _iob[OPEN_MAX];
 FILE *_fopen(char *, char *);
 int _fillbuf(FILE *);
 int _flushbuf(int, FILE *);
-int _fflush(FILE *);
 
 #define feof(p) (((p)->flag & _EOF) != 0)
 #define ferror(p) (((p)->flag & _ERR) != 0)
